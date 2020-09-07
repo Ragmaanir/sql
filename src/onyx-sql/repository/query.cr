@@ -6,7 +6,7 @@ module Onyx::SQL
 
       @logger.wrap("[#{driver}] #{sql}") do
         if params && !params.empty?
-          db.query(sql, params.to_a)
+          db.query(sql, args: params)
         else
           db.query(sql)
         end

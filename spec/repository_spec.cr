@@ -51,9 +51,9 @@ class MockDB
     ResultSet.new
   end
 
-  def query(sql, params : Enumerable(DB::Any)? = nil)
+  def query(sql, args : Enumerable(DB::Any)? = nil)
     @latest_query_sql = sql
-    @latest_query_params = params.try &.to_a
+    @latest_query_params = args.try &.to_a
     ResultSet.new
   end
 end
