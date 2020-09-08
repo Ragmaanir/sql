@@ -287,4 +287,6 @@ module Onyx::SQL
   # ```
   annotation Reference
   end
+
+  Log = ::Log.for(self)
 end

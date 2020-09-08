@@ -60,7 +60,7 @@ end
 
 module Onyx::SQL
   class Repository
-    def initialize(@db : MockDB, @logger = Onyx::SQL::Repository::Logger::Dummy.new)
+    def initialize(@db : MockDB)
     end
 
     protected def db_driver

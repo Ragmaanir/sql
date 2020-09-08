@@ -6,5 +6,5 @@ enum Database
 end
 
 def repo(database : Database)
-  Onyx::SQL::Repository.new(DB.open(ENV["#{database.to_s.upcase}_URL"]), Onyx::SQL::Repository::Logger::Dummy.new)
+  Onyx::SQL::Repository.new(DB.open(ENV["#{database.to_s.upcase}_URL"]))
 end

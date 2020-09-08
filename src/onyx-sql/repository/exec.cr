@@ -4,7 +4,7 @@ module Onyx::SQL
     def exec(sql : String, params : Enumerable(DB::Any)? = nil) : DB::ExecResult
       sql = prepare_query(sql)
 
-      @logger.wrap("[#{driver}] #{sql}") do
+      log_with_timing("[#{driver}] #{sql}") do
         if params
           db.exec(sql, params.to_a)
         else

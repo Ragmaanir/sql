@@ -1,3 +1,5 @@
+require "log"
+require "time_format"
 require "./repository/*"
 
 module Onyx::SQL
@@ -22,14 +24,27 @@ module Onyx::SQL
   # # 442μs
   # ```
   class Repository
+    Log = Onyx::SQL::Log.for(self)
+
     # A `::DB::Database | ::DB::Connection` instance for this repository.
     property db
 
-    # A `Repository::Logger` instance for this repository.
-    property logger
-
     # Initialize the repository.
-    def initialize(@db : ::DB::Database | ::DB::Connection, @logger : Logger = Logger::Standard.new)
+    def initialize(@db : ::DB::Database | ::DB::Connection)
+    end
+
+    # Wrap a block, logging elapsed time at *log_level* and returning the result.
+    protected def log_with_timing(msg : String, &block)
+      Log.info { msg }
+      started_at = Time.monotonic
+
+      result = yield
+
+      duration = Time.monotonic - started_at
+
+      Log.info &.emit(TimeFormat.auto(duration), data: msg, duration: duration.total_nanoseconds)
+
+      result
     end
 
     protected def postgresql?
