@@ -1,5 +1,5 @@
 require "log"
-require "time_format"
+require "./time_format"
 require "./repository/*"
 
 module Onyx::SQL

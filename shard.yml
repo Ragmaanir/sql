@@ -4,22 +4,19 @@ version: 0.9.0
 authors:
   - Vlad Faust <mail@vladfaust.com>
 
-crystal: 0.30.1
+crystal: ">= 0.30.1"
 
 license: MIT
 
 dependencies:
-  time_format:
-    github: vladfaust/time_format.cr
-    version: ~> 0.1.0
   db:
     github: crystal-lang/crystal-db
-    version: ~> 0.9.0
+    version: ~> 0.10
 
 development_dependencies:
   sqlite3:
     github: crystal-lang/crystal-sqlite3
-    version: ~> 0.16.0
+    version: ~> 0.18
   pg:
     github: will/crystal-pg
-    version: ~> 0.21.1
+    version: ~> 0.23
